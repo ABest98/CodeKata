@@ -1,6 +1,7 @@
 package codekata;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class CodeWars {
 
     }
 
-    // ADDING BIG NUMBERS * WITH BIGINTEGER*
+    // ADDING BIG NUMBERS * WITH BIGINTEGER * --4kyu
     public String add(String a, String b) {
         BigInteger num1 = new BigInteger(a);
         BigInteger num2 = new BigInteger(b);
@@ -20,7 +21,7 @@ public class CodeWars {
         return "" + total + "";
     }
 
-    // ADDING BIG NUMBERS * WITHOUT BIGINTEGER*
+    // ADDING BIG NUMBERS * WITHOUT BIGINTEGER * --4kyu
     public String addTwo(String a, String b) {
         // Create a simple calculator
 
@@ -86,5 +87,76 @@ public class CodeWars {
 
         // Return the total amount
         return total;
+    }
+
+    // Range Extraction --4kyu
+    public String rangeExtraction(int[] numArr) {
+        // Create empty string
+        StringBuilder formattedString = new StringBuilder();
+        // Create values to hold first number and next number
+        int firstNum, nextNum;
+        int previousNum = numArr[0];
+        int counter = 0;
+        // Loop over array
+        for(int i = 0; i < numArr.length - 1; i++) {
+            firstNum = numArr[i];
+            nextNum = numArr[i + 1];
+            // If next number = first number + 1 continue
+            if(nextNum == firstNum + 1) {
+                if(nextNum == numArr[numArr.length-1]) {
+                    previousNum = numArr[i - counter];
+                    formattedString.append(",").append(previousNum).append("-").append(nextNum);
+                }
+                counter++;
+            } else if (nextNum >= firstNum + 2) {
+
+                if (formattedString.toString().equals("")) {
+
+                    if(previousNum == firstNum) {
+                        formattedString.append(previousNum);
+                    } else {
+                        formattedString.append(previousNum).append("-").append(firstNum);
+                    }
+
+                } else if (counter == 1) {
+                    previousNum = numArr[i - counter];
+                    formattedString.append(",").append(previousNum).append(",").append(firstNum);
+
+                } else if (counter == 0) {
+                    formattedString.append(",").append(firstNum);
+
+                } else {
+                    previousNum = numArr[i - counter];
+                    formattedString.append(",").append(previousNum).append("-").append(firstNum);
+                }
+                counter = 0;
+            }
+            // If it's in a sequence add a - between first number and next number
+        }
+        // Return String
+
+        return formattedString.toString();
+    }
+
+    // Range Extraction * Simplified * --4kyu
+    public String rangeExtraction2(int[] numArr) {
+        List<String> ls = new ArrayList<>();
+        int consecutiveCounter = 0;
+        for (int i = 0; i < numArr.length; ) {
+            consecutiveCounter = 0;
+            String start = String.valueOf(numArr[i]);
+            while (i != numArr.length - 1 && numArr[i + 1] - numArr[i] == 1) {
+                consecutiveCounter++;
+                i++;
+            }
+            if (consecutiveCounter > 0) {
+                if (consecutiveCounter > 1) start += "-" + (Integer.parseInt(start) + consecutiveCounter);
+                else i--;
+            }
+            ls.add(start);
+            i++;
+        }
+
+        return String.join(",", ls);
     }
 }
