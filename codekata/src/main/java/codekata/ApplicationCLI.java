@@ -1,6 +1,5 @@
 package codekata;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 
 public class ApplicationCLI {
@@ -18,12 +17,14 @@ public class ApplicationCLI {
         int[] numArr = {-10, -9, -8, -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20};
         int[] twoSumArr = {2,7,11,15};
         int sumTarget = 9;
+        String romanNumeral = "MCMXCIV";
 
         System.out.println(codeWars.add(num1, num2));
         System.out.println(codeWars.addTwo(num1, num2));
         System.out.println(codeWars.rangeExtraction(numArr));
         System.out.println(codeWars.rangeExtraction2(numArr));
         System.out.println(Arrays.toString(leetCode.twoSum(twoSumArr, sumTarget)));
+        System.out.println(leetCode.romanToInteger(romanNumeral));
     }
 
     public static void main(String[] args) {
