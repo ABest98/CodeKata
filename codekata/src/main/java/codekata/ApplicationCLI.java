@@ -18,6 +18,8 @@ public class ApplicationCLI {
         int[] twoSumArr = {2,7,11,15};
         int sumTarget = 9;
         String romanNumeral = "MCMXCIV";
+        String[] strs = {"flower","flow","flight"};
+        String parentheses = "()[]{}";
 
         System.out.println(codeWars.add(num1, num2));
         System.out.println(codeWars.addTwo(num1, num2));
@@ -25,6 +27,8 @@ public class ApplicationCLI {
         System.out.println(codeWars.rangeExtraction2(numArr));
         System.out.println(Arrays.toString(leetCode.twoSum(twoSumArr, sumTarget)));
         System.out.println(leetCode.romanToInteger(romanNumeral));
+        System.out.println(leetCode.longestCommonPrefix(strs));
+        System.out.println(leetCode.isValid(parentheses));
     }
 
     public static void main(String[] args) {
